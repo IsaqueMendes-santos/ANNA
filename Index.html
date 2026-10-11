@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
+<meta name="theme-color" content="#0a1628">
+<title>Quando você precisar de mim 💙</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  :root{
+    --azul-escuro:#0a1628;
+    --azul-medio:#132a52;
+    --azul-profundo:#060e1c;
+    --azul-claro:#7ab8ff;
+    --azul-brilho:#4d9fff;
+    --ciano:#7dd3fc;
+    --azul-suave:#c7deff;
+    --branco-azulado:#eaf2ff;
+  }
+  html{height:100%;-webkit-text-size-adjust:100%;}
+  body{
+    font-family:'Poppins',system-ui,-apple-system,sans-serif;
+    background:#060e1c;
+    background-image:
+      radial-gradient(900px 700px at 12% 5%, rgba(77,159,255,.28), transparent 62%),
+      radial-gradient(800px 800px at 88% 15%, rgba(125,211,252,.18), transparent 62%),
+      radial-gradient(900px 800px at 50% 115%, rgba(77,159,255,.22), transparent 62%),
+      linear-gradient(165deg,#060e1c 0%,#0a1628 40%,#0f1e3d 70%,#132a52 100%);
+    color:#fff;
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px 14px 34px;
+    padding-top:calc(20px + env(safe-area-inset-top));
+    padding-bottom:calc(34px + env(safe-area-inset-bottom));
+    padding-left:calc(14px + env(safe-area-inset-left));
+    padding-right:calc(14px + env(safe-area-inset-right));
+    overflow-x:hidden;
+    position:relative;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background:radial-gradient(600px 400px at 50% 50%, rgba(77,159,255,.08), transparent 70%);
+    pointer-events:none;
+    z-index:0;
+    animation:auroraMove 18s ease-in-out infinite alternate;
+  }
+  @keyframes auroraMove{
+    0%{transform:translate(0,0) scale(1);}
+    100%{transform:translate(3%,-3%) scale(1.08);}
+  }
+
+  /* estrelinhas/corações flutuando */
+  #hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
+  .heart{
+    position:absolute;bottom:-12%;color:var(--azul-claro);
+    animation-name:rise;animation-timing-function:linear;
+    animation-iteration-count:infinite;user-select:none;filter:blur(.4px);
+  }
+  @keyframes rise{
+    0%{transform:translateY(0) rotate(0deg) scale(1);}
+    50%{transform:translateY(-60vh) rotate(18deg) scale(1.1);}
+    100%{transform:translateY(-128vh) rotate(-12deg) scale(.9);}
+  }
+
+  .app{
+    position:relative;z-index:2;width:100%;max-width:680px;
+    display:flex;flex-direction:column;gap:20px;
+  }
+
+  header{text-align:center;padding:0 4px;}
+  .badge{
+    display:inline-block;font-size:10.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--azul-suave);
+    border:1px solid rgba(122,184,255,.4);
+    background:rgba(77,159,255,.1);
+    padding:7px 16px;border-radius:100px;margin-bottom:16px;
+    font-weight:500;backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    box-shadow:0 4px 24px -8px rgba(77,159,255,.6);
+  }
+  h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(26px,7.5vw,44px);
+    line-height:1.15;font-weight:700;letter-spacing:-.015em;
+    background:linear-gradient(115deg,#fff 15%,var(--azul-suave) 55%,var(--azul-claro) 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    filter:drop-shadow(0 4px 30px rgba(77,159,255,.45));
+  }
+  .sub{
+    margin-top:12px;font-size:13.5px;font-weight:300;
+    color:rgba(234,242,255,.7);line-height:1.6;
+    max-width:400px;margin-left:auto;margin-right:auto;
+  }
+
+  /* chips — rolagem horizontal em telas muito pequenas */
+  .chips-wrap{
+    position:relative;
+    margin:0 -14px;
+    padding:0 14px;
+  }
+  .chips-wrap::after{
+    content:'';position:absolute;top:0;right:0;bottom:0;width:32px;
+    background:linear-gradient(to left,rgba(6,14,28,.85),transparent);
+    pointer-events:none;opacity:0;transition:opacity .3s;
+  }
+  .chips-wrap.scrollable::after{opacity:1;}
+  .chips{
+    display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+  }
+  @media (max-width:600px){
+    .chips{
+      flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
+      scrollbar-width:none;-ms-overflow-style:none;
+      padding-bottom:6px;padding-top:2px;
+    }
+    .chips::-webkit-scrollbar{display:none;}
+  }
+  .chip{
+    font-family:inherit;font-size:12.5px;font-weight:400;
+    color:rgba(234,242,255,.85);
+    background:rgba(122,184,255,.07);
+    border:1px solid rgba(122,184,255,.18);
+    padding:9px 15px;border-radius:100px;cursor:pointer;
+    transition:all .25s cubic-bezier(.2,.8,.3,1);
+    white-space:nowrap;position:relative;overflow:hidden;
+    flex-shrink:0;min-height:38px;
+    display:inline-flex;align-items:center;
+    -webkit-user-select:none;user-select:none;
+  }
+  .chip::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(120deg,transparent,rgba(122,184,255,.25),transparent);
+    transform:translateX(-100%);transition:transform .6s;
+  }
+  .chip:hover::before,.chip:active::before{transform:translateX(100%);}
+  .chip:hover{
+    background:rgba(122,184,255,.15);
+    border-color:rgba(122,184,255,.5);color:#fff;
+    box-shadow:0 8px 22px -10px rgba(77,159,255,.8);
+  }
+  .chip:active{transform:scale(.96);}
+  .chip.active{
+    background:linear-gradient(135deg,#4d9fff,#7ab8ff);
+    border-color:transparent;color:#fff;font-weight:500;
+    box-shadow:0 10px 30px -10px rgba(77,159,255,1);
+  }
+
+  /* card principal */
+  .card{
+    position:relative;
+    background:rgba(122,184,255,.06);
+    border:1px solid rgba(122,184,255,.16);
+    border-radius:26px;
+    padding:34px 22px 24px;
+    backdrop-filter:blur(22px) saturate(1.3);
+    -webkit-backdrop-filter:blur(22px) saturate(1.3);
+    box-shadow:
+      0 40px 90px -40px rgba(0,0,0,.9),
+      0 0 60px -30px rgba(77,159,255,.4),
+      0 0 0 1px rgba(122,184,255,.05) inset,
+      inset 0 1px 0 rgba(122,184,255,.15);
+    overflow:hidden;
+  }
+  @media (min-width:640px){
+    .card{padding:42px 34px 30px;border-radius:32px;}
+  }
+  .card::before{
+    content:'❝';
+    position:absolute;top:2px;left:18px;
+    font-family:'Playfair Display',serif;
+    font-size:64px;color:rgba(122,184,255,.22);
+    line-height:1;pointer-events:none;
+  }
+  @media (min-width:640px){
+    .card::before{font-size:84px;top:4px;left:24px;}
+  }
+  .card::after{
+    content:'';position:absolute;top:-50%;right:-30%;
+    width:70%;height:180%;
+    background:radial-gradient(circle,rgba(77,159,255,.15),transparent 65%);
+    pointer-events:none;animation:auroraMove 12s ease-in-out infinite alternate;
+  }
+  .msg{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(18px,4.8vw,22px);
+    line-height:1.7;font-weight:500;color:var(--branco-azulado);
+    text-align:left;min-height:180px;
+    position:relative;z-index:1;letter-spacing:.005em;
+    word-wrap:break-word;overflow-wrap:break-word;
+  }
+  .msg.pop{animation:pop .55s cubic-bezier(.2,.8,.3,1);}
+  @keyframes pop{
+    from{opacity:0;transform:translateY(14px) scale(.985);filter:blur(6px);}
+    to{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
+  }
+
+  .actions{
+    display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;
+    position:relative;z-index:1;
+  }
+  .btn{
+    font-family:inherit;font-size:13px;font-weight:500;
+    padding:12px 16px;border-radius:100px;
+    border:1px solid rgba(122,184,255,.22);
+    background:rgba(122,184,255,.08);
+    color:rgba(234,242,255,.92);
+    cursor:pointer;transition:all .22s cubic-bezier(.2,.8,.3,1);
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    min-height:44px;flex:1 1 auto;
+    -webkit-user-select:none;user-select:none;
+    touch-action:manipulation;
+  }
+  @media (min-width:640px){
+    .btn{flex:0 0 auto;font-size:13.5px;padding:13px 20px;}
+  }
+  .btn:hover{
+    background:rgba(122,184,255,.16);
+    border-color:rgba(122,184,255,.4);
+  }
+  .btn:active{transform:scale(.97);}
+  .btn.primary{
+    background:linear-gradient(135deg,#4d9fff,#7ab8ff);
+    border-color:transparent;color:#fff;font-weight:600;
+    box-shadow:0 14px 38px -14px rgba(77,159,255,1);
+    flex:1 0 100%;order:-1;
+    position:relative;overflow:hidden;
+  }
+  @media (min-width:640px){
+    .btn.primary{flex:1;order:0;min-width:180px;}
+  }
+  .btn.primary::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
+    transform:translateX(-120%);transition:transform .6s;
+  }
+  .btn.primary:hover::before,.btn.primary:active::before{transform:translateX(120%);}
+
+  .btn.motivo{
+    background:linear-gradient(135deg,rgba(125,211,252,.35),rgba(77,159,255,.35));
+    border-color:rgba(122,184,255,.45);color:#fff;font-weight:500;
+    box-shadow:0 10px 26px -12px rgba(125,211,252,.9);
+    flex:1 0 100%;order:-1;
+  }
+  @media (min-width:640px){
+    .btn.motivo{flex:0 0 auto;order:0;}
+  }
+  .btn.motivo:hover{
+    background:linear-gradient(135deg,rgba(125,211,252,.55),rgba(77,159,255,.55));
+  }
+
+  .counter{
+    text-align:center;font-size:12px;font-weight:300;
+    color:rgba(199,222,255,.55);line-height:1.7;
+    letter-spacing:.01em;padding:0 8px;
+  }
+  .counter strong{color:var(--azul-claro);font-weight:600;}
+  .counter .heart-mini{color:var(--ciano);}
+
+  .assinatura{
+    text-align:center;font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:14.5px;
+    color:rgba(122,184,255,.75);margin-top:-6px;letter-spacing:.02em;
+  }
+
+  /* corações de explosão */
+  .burst{position:fixed;pointer-events:none;z-index:99;animation:burst 1.25s ease-out forwards;}
+  @keyframes burst{
+    0%{opacity:1;transform:translate(0,0) scale(.4);}
+    100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.6) rotate(var(--rot));}
+  }
+  .hug{
+    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+    pointer-events:none;z-index:98;
+    font-size:min(62vw,320px);opacity:0;
+    animation:hug 1.7s ease-out forwards;
+    filter:drop-shadow(0 0 80px rgba(77,159,255,1));
+  }
+  @keyframes hug{
+    0%{opacity:0;transform:scale(.3);}
+    22%{opacity:1;transform:scale(1.1);}
+    70%{opacity:1;transform:scale(1);}
+    100%{opacity:0;transform:scale(1.4);}
+  }
+
+  /* ===== OVERLAY RESPIRAÇÃO ===== */
+  .respira{
+    position:fixed;inset:0;z-index:200;
+    background:radial-gradient(circle at 50% 50%,#0a1830 0%,#03060e 100%);
+    display:none;align-items:center;justify-content:center;
+    flex-direction:column;gap:30px;padding:30px 24px;
+    padding-top:calc(30px + env(safe-area-inset-top));
+    padding-bottom:calc(30px + env(safe-area-inset-bottom));
+    opacity:0;transition:opacity .5s;
+  }
+  .respira.on{display:flex;opacity:1;}
+  .respira-circulo{
+    width:min(64vw,240px);height:min(64vw,240px);
+    border-radius:50%;
+    background:radial-gradient(circle at 40% 35%,rgba(122,184,255,.7),rgba(77,159,255,.3) 60%,rgba(125,211,252,.2));
+    border:1.5px solid rgba(199,222,255,.55);
+    box-shadow:0 0 80px rgba(77,159,255,.7),inset 0 0 60px rgba(77,159,255,.35);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-size:19px;color:#fff;
+    transition:transform 4s cubic-bezier(.4,0,.4,1), box-shadow 4s;
+    flex-shrink:0;
+  }
+  .respira-circulo.inspira{
+    transform:scale(1.32);
+    box-shadow:0 0 120px rgba(122,184,255,.95),inset 0 0 80px rgba(122,184,255,.5);
+  }
+  .respira-circulo.expira{
+    transform:scale(.9);
+    box-shadow:0 0 50px rgba(125,211,252,.6),inset 0 0 40px rgba(125,211,252,.4);
+  }
+  .respira-txt{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(19px,5vw,25px);
+    color:var(--azul-suave);font-style:italic;
+    text-align:center;min-height:36px;max-width:400px;
+    padding:0 8px;
+  }
+  .respira-fechar{
+    font-family:inherit;font-size:13.5px;font-weight:500;
+    padding:14px 28px;border-radius:100px;
+    border:1px solid rgba(122,184,255,.35);
+    background:rgba(122,184,255,.12);
+    color:#fff;cursor:pointer;transition:.25s;
+    min-height:48px;touch-action:manipulation;
+  }
+  .respira-fechar:hover,.respira-fechar:active{
+    background:rgba(122,184,255,.25);
+  }
+
+  /* ===== OVERLAY MOTIVOS ===== */
+  .motivos{
+    position:fixed;inset:0;z-index:210;
+    background:
+      radial-gradient(1000px 700px at 50% 50%,rgba(77,159,255,.2),transparent 70%),
+      radial-gradient(circle at 50% 50%,#0a1830 0%,#03060e 100%);
+    display:none;align-items:center;justify-content:center;
+    padding:20px 14px;
+    padding-top:calc(20px + env(safe-area-inset-top));
+    padding-bottom:calc(20px + env(safe-area-inset-bottom));
+    opacity:0;transition:opacity .4s;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .motivos.on{display:flex;opacity:1;}
+  .motivos-card{
+    position:relative;width:100%;max-width:560px;
+    background:rgba(122,184,255,.07);
+    border:1px solid rgba(122,184,255,.25);
+    border-radius:28px;
+    padding:38px 22px 28px;
+    backdrop-filter:blur(24px) saturate(1.4);
+    -webkit-backdrop-filter:blur(24px) saturate(1.4);
+    box-shadow:
+      0 50px 110px -40px rgba(0,0,0,.95),
+      0 0 100px -20px rgba(77,159,255,.5),
+      inset 0 1px 0 rgba(122,184,255,.18);
+    text-align:center;
+    animation:motivosIn .55s cubic-bezier(.2,.8,.3,1);
+    overflow:hidden;
+    margin:auto;
+  }
+  @media (min-width:640px){
+    .motivos-card{padding:46px 34px 34px;border-radius:36px;}
+  }
+  @keyframes motivosIn{
+    from{opacity:0;transform:translateY(24px) scale(.96);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+  }
+  .motivos-card::before{
+    content:'';position:absolute;top:-30%;left:-20%;
+    width:140%;height:80%;
+    background:radial-gradient(circle,rgba(122,184,255,.22),transparent 65%);
+    pointer-events:none;animation:auroraMove 8s ease-in-out infinite alternate;
+  }
+  .motivos-icon{
+    font-size:48px;line-height:1;
+    filter:drop-shadow(0 0 30px rgba(77,159,255,1));
+    animation:heartbeat 1.6s ease-in-out infinite;
+    margin-bottom:12px;position:relative;z-index:1;
+  }
+  @media (min-width:640px){.motivos-icon{font-size:56px;}}
+  @keyframes heartbeat{
+    0%,100%{transform:scale(1);}
+    20%{transform:scale(1.15);}
+    40%{transform:scale(.98);}
+    60%{transform:scale(1.1);}
+  }
+  .motivos-label{
+    font-family:'Poppins',sans-serif;font-size:10.5px;
+    letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(199,222,255,.8);font-weight:500;
+    margin-bottom:20px;position:relative;z-index:1;
+  }
+  .motivos-txt{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(19px,5vw,25px);
+    line-height:1.6;font-weight:500;color:#fff;
+    margin-bottom:18px;position:relative;z-index:1;
+    min-height:140px;display:flex;align-items:center;justify-content:center;
+    padding:0 4px;word-wrap:break-word;overflow-wrap:break-word;
+  }
+  @media (min-width:640px){
+    .motivos-txt{min-height:160px;font-size:clamp(20px,3.5vw,26px);}
+  }
+  .motivos-txt.pop{animation:pop .5s cubic-bezier(.2,.8,.3,1);}
+  .motivos-counter{
+    font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:300;
+    color:rgba(199,222,255,.5);letter-spacing:.04em;
+    margin-bottom:22px;position:relative;z-index:1;
+  }
+  .motivos-counter strong{color:var(--azul-claro);font-weight:600;}
+  .motivos-actions{
+    display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+    position:relative;z-index:1;
+  }
+  .motivos-actions .btn{
+    font-size:13px;padding:13px 20px;min-height:46px;
+    flex:1 0 100%;
+  }
+  @media (min-width:520px){
+    .motivos-actions .btn{flex:1 1 auto;}
+  }
+  .motivos-actions .btn.primary{
+    background:linear-gradient(135deg,#4d9fff,#7ab8ff);
+    border-color:transparent;color:#fff;font-weight:600;
+    box-shadow:0 14px 38px -14px rgba(77,159,255,1);
+    flex:1 1 auto;
+  }
+
+  /* telas muito pequenas */
+  @media (max-width:360px){
+    .chip{font-size:11.5px;padding:8px 12px;min-height:34px;}
+    .btn{font-size:12px;padding:11px 14px;min-height:42px;}
+    .msg{font-size:17px;min-height:200px;}
+    .card{padding:30px 18px 22px;}
+  }
+
+  /* telas grandes mantêm o layout original */
+  @media (min-width:640px){
+    body{padding:30px 16px 50px;}
+    .app{gap:24px;}
+    .chips{flex-wrap:wrap;justify-content:center;}
+    .card{border-radius:32px;}
+    .msg{min-height:180px;font-size:clamp(19px,2.5vw,22px);}
+  }
+
+  /* landscape em celular */
+  @media (max-height:500px) and (orientation:landscape){
+    body{padding:14px 14px 20px;align-items:flex-start;}
+    .respira{gap:18px;}
+    .respira-circulo{width:min(30vh,140px);height:min(30vh,140px);font-size:16px;}
+    .respira-txt{font-size:17px;}
+    .motivos-card{padding:24px 18px 18px;}
+    .motivos-txt{min-height:80px;font-size:18px;}
+  }
+</style>
+</head>
+<body>
+
+<div id="hearts"></div>
+
+<main class="app">
+  <header>
+    <div class="badge">feito com amor, só pra você</div>
+    <h1>Quando você precisar de mim</h1>
+    <p class="sub">Escolhe como você está agora<br>e eu falo com você 💙</p>
+  </header>
+
+  <div class="chips-wrap" id="chipsWrap">
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <section class="card">
+    <p class="msg" id="msg"></p>
+    <div class="actions">
+      <button class="btn primary" id="again">Outra mensagem 💌</button>
+      <button class="btn motivo" id="btnMotivo">💙 Por que eu te amo</button>
+      <button class="btn" id="copy">📋 Copiar</button>
+      <button class="btn" id="zap">💬 WhatsApp</button>
+      <button class="btn" id="abraco">🫂 Me abraça</button>
+    </div>
+  </section>
+
+  <p class="assinatura">— com todo o meu amor, do seu amor</p>
+
+  <p class="counter" id="counter"></p>
+</main>
+
+<!-- overlay de respiração -->
+<div class="respira" id="respiraOverlay">
+  <div class="respira-circulo" id="respiraCirculo">respira</div>
+  <div class="respira-txt" id="respiraTxt">Vem cá. Respira comigo…</div>
+  <button class="respira-fechar" id="respiraFechar">Já estou melhor 💙</button>
+</div>
+
+<!-- overlay de motivos -->
+<div class="motivos" id="motivosOverlay">
+  <div class="motivos-card">
+    <div class="motivos-icon">💙</div>
+    <div class="motivos-label">um dos milhares de motivos</div>
+    <p class="motivos-txt" id="motivosTxt"></p>
+    <div class="motivos-counter" id="motivosCounter"></div>
+    <div class="motivos-actions">
+      <button class="btn primary" id="motivosProximo">Outro motivo 💙</button>
+      <button class="btn" id="motivosFechar">Fechar 🤍</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   1) BANCOS DE FRASES
+   ========================================================= */
+const SAUDACOES = [
+  "Oi, meu amor.","Oi, minha princesa.","Oi, meu bem.","Minha vida,","Amor,",
+  "Oi, linda.","Meu anjo,","Oi, meu amorzinho.","Oi, minha gatinha.","Meu bem,",
+  "Oi, meu tudo.","Minha princesa,","Oi, meu coração.","Oi, minha vida.","Meu amor,",
+  "Oi, meu docinho.","Minha linda,","Oi, meu tesouro.","Oi, meu cheirinho.","Oi, minha paz.",
+  "Oi, meu benzinho.","Minha pessoa favorita,","Oi, dona do meu coração.","Oi, minha bebê.",
+  "Oi, meu xodó.","Amor da minha vida,","Oi, meu pedacinho de céu.","Minha razão,",
+  "Oi, meu sonho.","Oi, minha boneca."
+];
+
+const SITUACOES = [
+  /* TRISTE */
+  {c:"triste", t:"Eu sei que hoje o seu coração está pesado e que a tristeza resolveu aparecer sem avisar."},
+  {c:"triste", t:"Se você está triste agora, eu queria poder te abraçar bem forte neste exato momento."},
+  {c:"triste", t:"Eu percebo quando você está triste, mesmo quando você tenta esconder de todo mundo."},
+  {c:"triste", t:"Se as lágrimas estão vindo, deixa elas caírem. Você não precisa ser forte o tempo todo."},
+  {c:"triste", t:"Eu sei que tem dias que a tristeza chega do nada e toma conta do peito inteiro."},
+  {c:"triste", t:"Se você está chorando aí sozinha, eu queria estar aí enxugando cada lágrima sua."},
+  {c:"triste", t:"Eu odeio saber que você está triste e eu não posso estar aí do seu lado agora."},
+  {c:"triste", t:"Se a tristeza te pegou de surpresa hoje, ela não vai ficar pra sempre, meu amor."},
+  {c:"triste", t:"Eu sei que dói, e tá tudo bem doer. Você não precisa fingir que está tudo bem comigo."},
+  {c:"triste", t:"Se o seu peito está apertado, desafoga comigo. Eu escuto tudo sem julgar."},
+  {c:"triste", t:"Eu sei que às vezes a gente só quer desaparecer um pouco. Mas você é a última pessoa que eu deixaria desaparecer."},
+  {c:"triste", t:"Se hoje a vontade é de ficar na cama e não falar com ninguém, eu respeito. Só não esquece que eu estou aqui."},
+  {c:"triste", t:"Eu sei que tem dias que a gente chora escondido pra ninguém ver. Comigo você não precisa esconder."},
+  {c:"triste", t:"Se a sua alma está cansada e o coração magoado, vem cá que eu cuido de você."},
+  {c:"triste", t:"Eu sei que você está tentando ser forte mesmo por dentro estando em pedaços. Deixa eu te ajudar a juntar."},
+  {c:"triste", t:"Se o mundo foi cruel com você hoje, eu quero ser o lugar onde você se sente segura."},
+  {c:"triste", t:"Eu sei que a tristeza mente pra gente e diz que não vai passar. Mas ela passa, e eu vou estar aqui quando passar."},
+  {c:"triste", t:"Se você está se sentindo para baixo, eu queria poder te dar um abraço que curasse tudo."},
+  {c:"triste", t:"Eu sei que às vezes tudo pesa e a gente não sabe nem por onde começar. Começa por mim. Estou aqui."},
+  {c:"triste", t:"Se hoje você só queria sumir, por favor não suma. O mundo precisa de você e eu mais ainda."},
+
+  /* SAUDADE */
+  {c:"saudade", t:"Eu sei que a saudade está apertando o seu peito e que a vontade de me ver é grande."},
+  {c:"saudade", t:"Se você está com saudade de mim, saiba que eu estou com o dobro de saudade de você."},
+  {c:"saudade", t:"A distância às vezes dói, e eu sei que você sente isso tanto quanto eu."},
+  {c:"saudade", t:"Eu sei que você ficou olhando as fotos da gente e sentiu aquele aperto no peito."},
+  {c:"saudade", t:"Se você está com vontade de me abraçar agora, fecha os olhos que eu mando um abraço daqui."},
+  {c:"saudade", t:"Eu sei que a saudade é chata, mas ela só existe porque o que a gente tem é grande demais."},
+  {c:"saudade", t:"Se você sentiu minha falta hoje, saiba que eu senti a sua desde o minuto em que acordei."},
+  {c:"saudade", t:"Eu também fico olhando o celular esperando uma mensagem sua, pode acreditar."},
+  {c:"saudade", t:"Se a distância está pesando, lembra que cada dia que passa é um dia mais perto de te ver."},
+  {c:"saudade", t:"Eu sei que tem noites que a saudade não deixa dormir. Eu também passo por isso, pensando em você."},
+  {c:"saudade", t:"Se você está com saudade do meu abraço, saiba que o meu também está com saudade do seu."},
+  {c:"saudade", t:"Eu sei que você queria me ter por perto agora, e eu queria estar aí mais do que qualquer coisa."},
+  {c:"saudade", t:"Se você está com saudade da minha voz, fecha os olhos e imagina eu te dizendo que te amo."},
+  {c:"saudade", t:"Eu sei que você conta os dias pra me ver. Eu também conto, mais do que você imagina."},
+  {c:"saudade", t:"Se você está com o coração apertado de saudade, manda mensagem. Não fica sofrendo sozinha."},
+  {c:"saudade", t:"Eu sei que você queria poder me abraçar agora. Em pensamento eu estou te abraçando bem forte."},
+  {c:"saudade", t:"Se a saudade te pegou hoje, lembra que ela é prova de que o que a gente tem é real."},
+  {c:"saudade", t:"Eu sei que a vontade de me ver é grande. A minha de te ver é maior ainda."},
+
+  /* ANSIOSA */
+  {c:"ansiosa", t:"Eu sei que a sua cabeça está cheia de pensamentos e que a ansiedade está te apertando."},
+  {c:"ansiosa", t:"Se o seu coração está acelerado e a mente não para quieta, respira junto comigo."},
+  {c:"ansiosa", t:"Eu sei que às vezes tudo parece grande demais e o medo aparece sem avisar."},
+  {c:"ansiosa", t:"Se você está ansiosa com o futuro, lembra que a gente só precisa dar um passo de cada vez."},
+  {c:"ansiosa", t:"Eu sei que a ansiedade faz a gente pensar em mil coisas ao mesmo tempo. Vamos por uma só."},
+  {c:"ansiosa", t:"Se a sua respiração está curta e o peito apertado, eu estou aqui pra te ajudar a desacelerar."},
+  {c:"ansiosa", t:"Eu sei que tem pensamentos que a gente não consegue desligar. Mas você não precisa enfrentá-los sozinha."},
+  {c:"ansiosa", t:"Se o coração está na boca, bota a mão no peito e sente ele batendo. Isso é só amor, não é medo."},
+  {c:"ansiosa", t:"Eu sei que a sua cabeça está a mil e o corpo cansado de tanta tensão. Vem cá, respira."},
+  {c:"ansiosa", t:"Se você está com aquele nó na garganta, chora ou grita ou me liga. Só não guarda isso sozinha."},
+  {c:"ansiosa", t:"Eu sei que ansiedade é uma coisa que mente pra gente. Ela diz que vai dar errado, mas não vai."},
+  {c:"ansiosa", t:"Se você está com o peito cheio de angústia, fecha os olhos e conta até dez comigo. Um… dois… três…"},
+  {c:"ansiosa", t:"Eu sei que você está tentando controlar tudo ao mesmo tempo. Solta um pouco. Eu seguro."},
+  {c:"ansiosa", t:"Se o seu corpo está tenso e o maxilar apertado, solta os ombros. Deixa eu tirar esse peso de você."},
+  {c:"ansiosa", t:"Eu sei que tem dias que a gente só quer desligar a cabeça. Vem, desliga comigo."},
+  {c:"ansiosa", t:"Se a preocupação está te consumindo, me conta o que é. Às vezes falar já alivia."},
+  {c:"ansiosa", t:"Eu sei que você está tentando respirar fundo e nem isso tá funcionando. Vem cá que eu respiro com você."},
+  {c:"ansiosa", t:"Se você está ansiosa com algo que ainda nem aconteceu, lembra: o futuro não é hoje. Hoje é só agora."},
+
+  /* CANSADA */
+  {c:"cansada", t:"Eu sei que você está cansada e que o seu corpo só pede um pouco de paz."},
+  {c:"cansada", t:"Se o dia foi longo e exaustivo, eu queria estar aí pra cuidar de você."},
+  {c:"cansada", t:"Eu sei que você deu o seu máximo hoje, mesmo quando ninguém percebeu."},
+  {c:"cansada", t:"Se você está esgotada, para tudo por um minuto e vem cá respirar comigo."},
+  {c:"cansada", t:"Eu sei que essa exaustão não é só do corpo, é da alma também. Descansa, meu amor."},
+  {c:"cansada", t:"Se você não tem mais energia pra nada, então não faça nada. Deita e deixa eu cuidar de você em pensamento."},
+  {c:"cansada", t:"Eu sei que você carrega muita coisa nas costas. Você não precisa carregar tudo sozinha."},
+  {c:"cansada", t:"Se você está exausta de fingir que está tudo bem, pode desabar comigo. Eu te seguro."},
+  {c:"cansada", t:"Eu sei que você fez mais do que podia hoje. Agora só te falta descansar, nada mais."},
+  {c:"cansada", t:"Se você está cansada até de pensar, bebe uma água, come alguma coisa e dorme. O resto pode esperar."},
+  {c:"cansada", t:"Eu sei que o seu corpo está pedindo arrego e você continua tentando. Para. Você merece descansar."},
+  {c:"cansada", t:"Se você não consegue nem levantar da cama, tá tudo bem. Fica aí que eu vou até você em pensamento."},
+  {c:"cansada", t:"Eu sei que tem dias que a gente só quer que alguém cuide da gente. Hoje eu cuido de você."},
+  {c:"cansada", t:"Se você está exausta de tudo, lembra que descansar não é fraqueza, é necessidade."},
+  {c:"cansada", t:"Eu sei que a sua mente e o seu corpo estão pedindo pausa. Escuta eles."},
+  {c:"cansada", t:"Se você se sente sugada por todo mundo, esquece o mundo. Hoje você só precisa cuidar de você."},
+  {c:"cansada", t:"Eu sei que você está se esforçando mais do que devia. Diminui o ritmo, meu amor. Eu estou aqui."},
+  {c:"cansada", t:"Se você está tão cansada que nem chorar consegue, só fecha os olhos. Eu fico do seu lado em silêncio."},
+
+  /* BRAVA */
+  {c:"brava", t:"Eu sei que você está com raiva e que alguém ou alguma coisa te irritou hoje."},
+  {c:"brava", t:"Se você está brava, pode desabafar comigo. Eu aguento ouvir tudo."},
+  {c:"brava", t:"Eu sei que você está com raiva, e tá tudo bem sentir isso. Você tem direito."},
+  {c:"brava", t:"Se você quer xingar alguém, xinga pra mim que eu concordo com você."},
+  {c:"brava", t:"Eu sei que às vezes a raiva é a tristeza que a gente não conseguiu chorar. Tô aqui."},
+  {c:"brava", t:"Se você está com raiva de mim, fala comigo. Eu prefiro mil vezes ouvir do que te ver calada."},
+  {c:"brava", t:"Eu sei que tem gente que tira a gente do sério. E você tem todo o direito de estar irritada."},
+  {c:"brava", t:"Se a raiva está fervendo, respira antes de explodir. E depois me conta o que aconteceu."},
+  {c:"brava", t:"Eu sei que é difícil engolir certas coisas. Mas você não precisa engolir sozinha."},
+  {c:"brava", t:"Se você está com raiva do mundo inteiro, desabafa comigo que eu tô do seu lado, sempre."},
+  {c:"brava", t:"Eu sei que você está segurando a raiva pra não explodir. Pode explodir comigo, eu aguento."},
+  {c:"brava", t:"Se você está indignada com alguma injustiça, tem razão de estar. Você é justa e eu admiro isso."},
+  {c:"brava", t:"Eu sei que tem hora que a gente quer quebrar tudo. Antes de quebrar, me liga."},
+  {c:"brava", t:"Se você está estressada e prestes a surtar, dá um tempo. Só um tempo. Eu espero."},
+  {c:"brava", t:"Eu sei que a raiva cansa mais que qualquer coisa. Depois de desabafar, descansa um pouco."},
+  {c:"brava", t:"Se você está com raiva e não sabe explicar, não precisa explicar. Só não fica sozinha com isso."},
+  {c:"brava", t:"Eu sei que você tem razão de estar irritada. E eu estou aqui pra isso, pra te dar razão mesmo."},
+  {c:"brava", t:"Se você está de mal do mundo, seja de mal comigo junto. Eu topo tudo pra te ver melhor."},
+
+  /* INSEGURA */
+  {c:"insegura", t:"Se você está se sentindo insegura, eu quero que você lembre o quanto você é incrível."},
+  {c:"insegura", t:"Eu sei que às vezes você duvida de si mesma, mas eu nunca duvidei de você."},
+  {c:"insegura", t:"Se você está com medo do que vem pela frente, lembra que você não vai enfrentar isso sozinha."},
+  {c:"insegura", t:"Se você está achando que não é suficiente, eu preciso te dizer que você é mais do que suficiente."},
+  {c:"insegura", t:"Eu sei que você se compara com os outros às vezes. Mas não tem ninguém no mundo como você."},
+  {c:"insegura", t:"Se você está se sentindo pequena, eu preciso te lembrar do tamanho que você tem dentro de mim."},
+  {c:"insegura", t:"Eu sei que você olha no espelho e às vezes não gosta do que vê. Mas eu amo tudo o que vejo."},
+  {c:"insegura", t:"Se você está com medo de não dar conta, lembra de tudo o que você já venceu até aqui."},
+  {c:"insegura", t:"Eu sei que a autossabotagem aparece às vezes. Mas eu acredito em você mais do que você mesma."},
+  {c:"insegura", t:"Se você está achando que não merece coisas boas, você merece. E eu vou te lembrar disso sempre."},
+  {c:"insegura", t:"Eu sei que você se pergunta se é boa o suficiente. Pra mim você é. E pra mim é o que importa."},
+  {c:"insegura", t:"Se você está insegura com o seu trabalho, seus estudos, sua vida… respira. Você está no caminho certo."},
+  {c:"insegura", t:"Eu sei que às vezes você acha que está atrasada em relação aos outros. Mas cada um tem seu tempo, meu amor."},
+  {c:"insegura", t:"Se você está se sentindo burra ou incapaz, para. Você é uma das pessoas mais inteligentes que eu conheço."},
+  {c:"insegura", t:"Eu sei que você duvida do seu valor às vezes. Mas eu vejo o seu valor todos os dias."},
+  {c:"insegura", t:"Se você está se achando um fracasso, deixa eu te contar: fracasso é quem não tenta. E você tenta sempre."},
+  {c:"insegura", t:"Eu sei que você está com medo de não ser amada o suficiente. Mas você é amada além da conta."},
+  {c:"insegura", t:"Se você está se sentindo perdida, lembra que você não precisa ter tudo resolvido agora. Ninguém tem."},
+
+  /* CARINHO */
+  {c:"carinho", t:"Se você só quer um carinho, vem cá que eu tenho o maior carinho do mundo pra te dar."},
+  {c:"carinho", t:"Se hoje você só precisa de colo, eu estou aqui de braços abertos pra você."},
+  {c:"carinho", t:"Se você quer atenção, eu tenho toda a atenção do mundo pra te dar agora."},
+  {c:"carinho", t:"Se você quer cafuné, encosta a cabeça no meu peito e fica quietinha."},
+  {c:"carinho", t:"Se você só quer saber que é amada, então presta atenção: você é absurdamente amada."},
+  {c:"carinho", t:"Se você quer um beijo na testa, é só fechar os olhos que eu mando um agora."},
+  {c:"carinho", t:"Se você precisa de mimo, hoje eu te mimo até você enjoar. Fica à vontade."},
+  {c:"carinho", t:"Se você está carente, eu tenho carinho de sobra pra te dar até você transbordar."},
+  {c:"carinho", t:"Se você quer ficar agarradinha, eu paro tudo agora só pra isso."},
+  {c:"carinho", t:"Se você precisa de um abraço que aperta, é desse jeito que eu vou te abraçar."},
+  {c:"carinho", t:"Se você quer carinho de graça, comigo é de graça pra sempre. Sempre que quiser."},
+  {c:"carinho", t:"Se você está com vontade de dormir abraçada, eu fecho os olhos e te abraço daqui."},
+  {c:"carinho", t:"Se você quer ser tratada como princesa, então prepara que hoje eu vou te tratar como rainha."},
+  {c:"carinho", t:"Se você só quer que alguém penteie o seu cabelo com a mão, eu faço isso em pensamento agora."},
+  {c:"carinho", t:"Se você quer que eu te diga que você é linda, você é. Mil vezes linda. Sempre."},
+  {c:"carinho", t:"Se você está com vontade de carinho sem falar nada, eu entendo o silêncio e abraço do mesmo jeito."},
+  {c:"carinho", t:"Se você quer atenção sem precisar pedir, é assim que eu te dou: sem você pedir, todos os dias."},
+  {c:"carinho", t:"Se você quer ser beijada na bochecha agora, considera beijada. E na testa também."},
+
+  /* MEDO */
+  {c:"medo", t:"Eu sei que o medo bateu forte hoje, e que você está com o coração apertado."},
+  {c:"medo", t:"Se algo está te assustando, eu quero que você saiba que eu estou aqui pra segurar sua mão."},
+  {c:"medo", t:"Eu sei que a noite às vezes deixa tudo mais assustador. Mas você não está sozinha nela."},
+  {c:"medo", t:"Se você está com medo de perder algo ou alguém, fala comigo. Vamos passar por isso juntas."},
+  {c:"medo", t:"Eu sei que o futuro dá medo às vezes. Mas a gente não precisa ver longe, só o próximo passo."},
+  {c:"medo", t:"Se você está com medo de não conseguir, lembra que eu vou estar do seu lado em cada tentativa."},
+  {c:"medo", t:"Eu sei que o medo não escolhe hora pra aparecer. Mas eu escolho sempre ficar do seu lado."},
+  {c:"medo", t:"Se o medo está te paralisando, respira e vem conversar comigo. A gente enfrenta juntos."},
+  {c:"medo", t:"Eu sei que você está com medo de errar. Mas errar faz parte, e eu vou estar aqui quando acontecer."},
+  {c:"medo", t:"Se você está com medo de decepcionar alguém, respira. Você nunca me decepcionou e nunca vai."},
+  {c:"medo", t:"Eu sei que tem medos que parecem bobos, mas se te assusta, pra mim é importante."},
+  {c:"medo", t:"Se você está com medo de ficar sozinha, saiba que eu não vou a lugar nenhum. Nunca."},
+  {c:"medo", t:"Eu sei que você tem medo de não ser forte o bastante. Mas você é. E eu vou te lembrar disso."},
+  {c:"medo", t:"Se você está com medo do desconhecido, lembra que do meu lado nada é desconhecido."},
+  {c:"medo", t:"Eu sei que o medo faz a gente achar que tudo vai dar errado. Mas a gente já superou tanta coisa…"},
+  {c:"medo", t:"Se você está com medo de mudanças, lembra que a gente muda junto. Sempre junto."},
+
+  /* DOENTE */
+  {c:"doente", t:"Eu sei que você não está se sentindo bem hoje, e eu queria estar aí te cuidando."},
+  {c:"doente", t:"Se você está doente, bebe água, toma seu remédio e se cobre. E pensa em mim te cuidando."},
+  {c:"doente", t:"Eu sei que estar doente longe de mim é horrível. Só queria poder fazer um chá e te cobrir."},
+  {c:"doente", t:"Se você está se sentindo mal, descansa. O mundo pode esperar, sua saúde primeiro."},
+  {c:"doente", t:"Eu sei que você não gosta de ficar parada, mas hoje você tem que se cuidar, meu amor."},
+  {c:"doente", t:"Se a dor ou a febre estão aí, eu queria estar aí pra fazer cafuné até você dormir."},
+  {c:"doente", t:"Eu sei que estar doente deixa tudo mais difícil. Você vai melhorar, eu prometo."},
+  {c:"doente", t:"Se você está fragilizada, não precisa ser forte. Deixa eu te segurar em pensamento."},
+  {c:"doente", t:"Eu sei que você odeia ficar doente porque fica longe de tudo. Mas descansa, tá?"},
+  {c:"doente", t:"Se a sua cabeça está doendo, fecha a luz, deita e pensa em mim do seu lado."},
+  {c:"doente", t:"Eu sei que você está com o corpo dolorido. Queria poder te dar um banho quente e te enrolar num cobertor."},
+  {c:"doente", t:"Se você está com febre, tome seu remédio direitinho. Eu te amo e quero você bem."},
+  {c:"doente", t:"Eu sei que você está irritada por estar doente. Respira, você vai ficar bem logo."},
+  {c:"doente", t:"Se você está com dor de garganta, faz um chá com mel. É o que eu faria se estivesse aí."},
+  {c:"doente", t:"Eu sei que você não quer incomodar ninguém. Mas eu quero que você me incomode, tá?"},
+  {c:"doente", t:"Se você está se sentindo fraca, é porque seu corpo está lutando. Você é mais forte do que imagina."},
+
+  /* ESTRESSE */
+  {c:"estresse", t:"Eu sei que o trabalho ou os estudos estão te consumindo e você está esgotada."},
+  {c:"estresse", t:"Se o dia foi uma loucura, fecha os olhos por um minuto e pensa em mim te abraçando."},
+  {c:"estresse", t:"Eu sei que às vezes a pressão é grande demais. Você não precisa dar conta de tudo."},
+  {c:"estresse", t:"Se alguém te sobrecarregou hoje, respira fundo. Você não é obrigada a carregar o mundo."},
+  {c:"estresse", t:"Eu sei que tem dias que a gente só quer mandar tudo pro alto. Hoje pode ser um deles."},
+  {c:"estresse", t:"Se você está estressada, larga tudo por 10 minutos. Só 10. Você merece."},
+  {c:"estresse", t:"Eu sei que a cabeça está a mil com mil tarefas. Mas você é humana, não máquina."},
+  {c:"estresse", t:"Se o trabalho está sugando sua energia, lembra que você vale muito mais que qualquer prazo."},
+  {c:"estresse", t:"Eu sei que você está se cobrando demais. Diminui a cobrança. Você já está fazendo o suficiente."},
+  {c:"estresse", t:"Se alguém te irritou no trabalho, conta pra mim. Eu fico bravo com você e depois te acalmo."},
+  {c:"estresse", t:"Eu sei que a rotina está te massacrando. Vem cá, desabafa comigo."},
+  {c:"estresse", t:"Se você está com o prazo apertado e o coração apertado também, respira. Um passo de cada vez."},
+  {c:"estresse", t:"Eu sei que tem dias que nada dá certo. Mas você é maior que qualquer dia ruim."},
+  {c:"estresse", t:"Se você está de saco cheio de tudo, tudo bem. Amanhã é outro dia e eu vou estar aqui."},
+  {c:"estresse", t:"Eu sei que a vida adulta é exaustiva. Mas você está fazendo o seu melhor e isso já é incrível."},
+  {c:"estresse", t:"Se hoje você queria só desaparecer um pouco do mundo, desaparece comigo. A gente foge junto."},
+
+  /* TPM */
+  {c:"tpm", t:"Eu sei que os hormônios estão à flor da pele e que tudo parece mais intenso hoje."},
+  {c:"tpm", t:"Se você está sensível por causa da TPM, tá tudo bem. Chora, ri, briga, me abraça. Eu fico."},
+  {c:"tpm", t:"Eu sei que seu corpo está te pregando peças. Só quero que você saiba que eu entendo."},
+  {c:"tpm", t:"Se hoje você está mais irritada ou mais triste, não se culpa. É só o seu corpo falando."},
+  {c:"tpm", t:"Eu sei que nesses dias tudo incomoda. Vem cá que eu te mimo até passar."},
+  {c:"tpm", t:"Se a cólica está atacando, coloca uma bolsa quente e pensa em mim cuidando de você."},
+  {c:"tpm", t:"Eu sei que você se sente inchada, cansada e sem paciência. E eu te amo exatamente assim."},
+  {c:"tpm", t:"Se você está com vontade de chorar do nada, chora. Eu seguro a sua mão enquanto isso."},
+  {c:"tpm", t:"Eu sei que nesses dias tudo dói mais. Não é frescura, é real. E eu respeito isso."},
+  {c:"tpm", t:"Se você está com aquele mix de emoções que você não entende, tá tudo bem. Nem precisa entender."},
+  {c:"tpm", t:"Eu sei que você chora por coisas pequenas e depois se sente boba. Você não é boba. É só a TPM."},
+  {c:"tpm", t:"Se a sua TPM te deixar querendo brigar comigo, briga. Eu sobrevivo e continuo te amando."},
+  {c:"tpm", t:"Eu sei que você se sente inchada e desconfortável. Você é linda do mesmo jeito."},
+  {c:"tpm", t:"Se a TPM te pegou de jeito hoje, lembra: amanhã já é outro dia e você vai estar melhor."},
+
+  /* SOZINHA */
+  {c:"sozinha", t:"Eu sei que tem horas que a gente se sente sozinha no mundo, mesmo cercada de gente."},
+  {c:"sozinha", t:"Se você está se sentindo sozinha, lembra que tem alguém aqui pensando em você agora."},
+  {c:"sozinha", t:"Eu sei que a solidão às vezes vem do nada. Mas você nunca está sozinha de verdade."},
+  {c:"sozinha", t:"Se você está se sentindo desamparada, é só me chamar. Eu vou correndo."},
+  {c:"sozinha", t:"Eu sei que ninguém te entende às vezes. Mas eu quero ser a pessoa que sempre tenta."},
+  {c:"sozinha", t:"Se você sente que ninguém percebe você, eu percebo. Sempre."},
+  {c:"sozinha", t:"Eu sei que estar sozinha dói, mas comigo você tem companhia pro que precisar."},
+  {c:"sozinha", t:"Se você está se sentindo invisível, pra mim você é a pessoa mais visível do mundo."},
+  {c:"sozinha", t:"Eu sei que tem dias que a gente só quer uma pessoa do lado. Considere-me aí."},
+  {c:"sozinha", t:"Se você está sentindo que ninguém te vê, deixa eu te ver mais uma vez: você é incrível."},
+  {c:"sozinha", t:"Eu sei que você às vezes se sente sozinha mesmo rodeada de gente. Não é frescura."},
+  {c:"sozinha", t:"Se o silêncio está pesando, fala comigo. Eu preencho o silêncio com amor."},
+  {c:"sozinha", t:"Eu sei que você queria um abraço agora. Considere-se abraçada bem apertado."},
+  {c:"sozinha", t:"Se você está sozinha e triste, lembra: você tem alguém que te ama de longe e quer te ver bem."},
+
+  /* NOITE */
+  {c:"noite", t:"Eu sei que a noite às vezes traz pensamentos que o dia esconde."},
+  {c:"noite", t:"Se você não consegue dormir, fecha os olhos e imagina eu te abraçando até você adormecer."},
+  {c:"noite", t:"Eu sei que tem noites que a mente não desliga. Respira fundo, eu estou aqui."},
+  {c:"noite", t:"Se você está insone, não fica rolando na cama. Me manda mensagem que eu respondo."},
+  {c:"noite", t:"Eu sei que a madrugada deixa tudo mais pesado. Mas você não está sozinha nela."},
+  {c:"noite", t:"Se o sono não vem, deita de lado, abraça o travesseiro e pensa em mim."},
+  {c:"noite", t:"Eu sei que às vezes é difícil desligar o cérebro. Deixa eu ocupar seus pensamentos."},
+  {c:"noite", t:"Se você está com medo da noite, acende uma luzinha e pensa que eu estou com você."},
+  {c:"noite", t:"Eu sei que a insônia é cruel. Eu fico acordado com você em pensamento."},
+  {c:"noite", t:"Se você está acordada às 3 da manhã, você não está sozinha. Eu estou aqui, de coração aberto."},
+  {c:"noite", t:"Eu sei que os pensamentos ficam mais altos de madrugada. Respira. É só a noite."},
+  {c:"noite", t:"Se você não dorme, imagina eu cantando baixinho pra você dormir. Boa noite, meu amor."},
+  {c:"noite", t:"Eu sei que a noite às vezes parece longa. Mas cada noite termina, e o dia vem comigo pensando em você."},
+  {c:"noite", t:"Se você está com o coração apertado à noite, coloca a mão no peito. Eu estou aí dentro."},
+
+  /* AMOR */
+  {c:"amor", t:"Se hoje você está se sentindo amada, quero que você saiba que eu te amo mais ainda."},
+  {c:"amor", t:"Se você abriu isso pra dizer que me ama, então eu já estou derretido aqui."},
+  {c:"amor", t:"Eu sei que às vezes a gente não diz, mas eu te amo em cada detalhe do meu dia."},
+  {c:"amor", t:"Se você só veio aqui pra receber amor, chegou no lugar certo, meu bem."},
+  {c:"amor", t:"Eu queria poder te dar todo o amor do mundo, mas ele não caberia em mim."},
+  {c:"amor", t:"Se você está se sentindo grata hoje, saiba que eu sou grato por ter você todos os dias."},
+  {c:"amor", t:"Eu amo você de um jeito que não sei explicar. E nem quero explicar. Só sentir."},
+  {c:"amor", t:"Se você está com vontade de ouvir que é amada, escuta: você é a pessoa mais amada do mundo."},
+  {c:"amor", t:"Eu te amo nos detalhes, nas coisas pequenas, nas coisas grandes, em tudo."},
+  {c:"amor", t:"Se hoje o amor está transbordando em você, transborda em mim também. Eu recebo."},
+  {c:"amor", t:"Eu te amo do jeito que você é, e vou te amar do jeito que você se tornar."},
+  {c:"amor", t:"Se você quer saber o tamanho do meu amor, ele é maior que qualquer coisa que você já viu."},
+  {c:"amor", t:"Eu te amo mesmo quando estou longe, mesmo quando estou calado, mesmo quando não parece."},
+  {c:"amor", t:"Se você está se sentindo amada agora, é porque eu te amo. E vou sempre te amar."},
+
+  /* GERAL */
+  {c:"geral", t:"Se você está pensando em mim agora, saiba que eu também estou pensando em você."},
+  {c:"geral", t:"Se o dia não foi como você esperava, eu quero que ele termine muito melhor."},
+  {c:"geral", t:"Se você abriu esse site, é porque precisava de mim. E eu vim correndo."},
+  {c:"geral", t:"Se você não sabe explicar o que está sentindo, não precisa. Só fica aqui comigo um pouco."},
+  {c:"geral", t:"Se você só queria ler uma coisa bonita hoje, então tá aqui: você é a melhor parte da minha vida."},
+  {c:"geral", t:"Se você está se sentindo perdida, deixa eu ser o seu porto seguro por um instante."},
+  {c:"geral", t:"Se você precisava de um sinal pra continuar, esse é ele: eu te amo e estou aqui."},
+  {c:"geral", t:"Se você está esperando alguém te dizer que vai ficar tudo bem, eu estou dizendo agora."},
+  {c:"geral", t:"Se você abriu isso sem motivo específico, o motivo é esse: eu queria te ver sorrir."},
+  {c:"geral", t:"Se hoje você só precisava saber que alguém te ama, saiba: você é muito, muito amada."},
+  {c:"geral", t:"Se você está com o coração apertado e não sabe por quê, eu só quero que você respire."},
+  {c:"geral", t:"Se você está aqui, é porque a gente se conecta de um jeito que ninguém entende. E eu amo isso."},
+  {c:"geral", t:"Se você precisa de um tempo pra si, tira. Eu fico aqui esperando você voltar."},
+  {c:"geral", t:"Se você só quer um lugar seguro, considera esse site o meu abraço em forma de palavras."},
+  {c:"geral", t:"Se você está se sentindo tudo ao mesmo tempo, respira. Vamos resolver uma coisa por vez."},
+  {c:"geral", t:"Se você não tem motivo pra estar aqui, o motivo é esse: eu te amo. Sempre."},
+
+  /* ACALMA */
+  {c:"acalma", t:"Respira comigo: inspira fundo pelo nariz… segura… solta devagar pela boca."},
+  {c:"acalma", t:"Se o peito está apertado, bota a mão nele e sente o seu coração batendo. Ele está aqui. Você está aqui."},
+  {c:"acalma", t:"Fecha os olhos por 10 segundos e imagina a minha voz te dizendo que vai ficar tudo bem."},
+  {c:"acalma", t:"Se a cabeça está a mil, nomeia 5 coisas que você consegue ver agora. Isso te traz pro presente."},
+  {c:"acalma", t:"Bebe um copo d'água bem devagar. Cada gole é uma pausa pro seu corpo."},
+  {c:"acalma", t:"Se o mundo parece grande demais, encolhe ele: só você, só agora, só esse minuto."},
+  {c:"acalma", t:"Coloca a mão na barriga e respira fundo 3 vezes. Sente ela subir e descer. Você consegue."},
+  {c:"acalma", t:"Não precisa resolver tudo hoje. Só precisa respirar. O resto a gente vê depois."},
+  {c:"acalma", t:"Se o coração está acelerado, alonga os ombros, relaxa o maxilar. Solta o peso."},
+  {c:"acalma", t:"Pensa em um lugar onde você se sente segura. Eu estou nesse lugar com você."},
+  {c:"acalma", t:"Conta até 10 bem devagar. Se chegar em 10 e ainda não estiver calma, conta de novo. Eu espero."},
+  {c:"acalma", t:"Deita no chão, sente o peso do corpo. Você está aqui, você está segura, você está bem."},
+  {c:"acalma", t:"Fecha os olhos e me imagina sentado do seu lado, segurando sua mão em silêncio."},
+  {c:"acalma", t:"Qualquer coisa que esteja acontecendo agora, respira. Nada é maior que a gente."},
+  {c:"acalma", t:"Vamos fazer juntos: enche o peito de ar… e solta bem devagar, como se soltasse todo o peso."},
+  {c:"acalma", t:"Se você está tremendo, segura firme na minha mão imaginária. Eu estou com você."},
+  {c:"acalma", t:"Bota uma música bem calminha e fecha os olhos. Eu deito do seu lado em pensamento."},
+  {c:"acalma", t:"Se o peito está cheio de angústia, coloca a mão no coração e diz: 'eu estou bem'. Repete comigo."},
+  {c:"acalma", t:"Alonga o pescoço, solta os ombros, respira. O corpo também precisa de cuidado."},
+  {c:"acalma", t:"Se você está perdida na cabeça, olha em volta e nomeia 3 objetos. Você está no presente. Está tudo bem."},
+
+  /* CIUMENTA */
+  {c:"ciumenta", t:"Eu sei que o ciúme apareceu hoje, e que ele está fazendo você se remoer por dentro."},
+  {c:"ciumenta", t:"Se você está com ciúmes, respira. Eu só tenho olhos pra você. Só pra você."},
+  {c:"ciumenta", t:"Eu sei que às vezes a insegurança bate e o ciúme aparece. Mas eu sou seu. Inteiro."},
+  {c:"ciumenta", t:"Se você está remoendo alguma coisa, me fala. Prefiro mil vezes conversar do que te ver sofrendo."},
+  {c:"ciumenta", t:"Eu sei que o ciúme dói. Mas eu quero que você saiba: você é a única. E sempre será."},
+  {c:"ciumenta", t:"Se você viu algo que te deixou mal, me conta. Eu te explico e te abraço depois."},
+  {c:"ciumenta", t:"Eu sei que você está se comparando com alguém. Mas não tem comparação: você é a pessoa da minha vida."},
+  {c:"ciumenta", t:"Se o ciúme está te fazendo mal, larga esse peso. Eu te escolhi e escolho você todos os dias."},
+  {c:"ciumenta", t:"Eu sei que você às vezes sente medo de me perder. Mas eu não vou a lugar nenhum, meu amor."},
+  {c:"ciumenta", t:"Se você está insegura com alguém, lembra que ninguém nunca chegou perto do que a gente tem."},
+  {c:"ciumenta", t:"Eu sei que o ciúme é só medo de perder o que é precioso. E você é preciosa pra mim."},
+  {c:"ciumenta", t:"Se você está com ciúmes de mim, saiba que eu acho fofo (e um pouco preocupante). Vem cá."},
+  {c:"ciumenta", t:"Eu sei que seu coração ficou apertado com algo. Vem cá que eu mostro que é só você, sempre foi."},
+  {c:"ciumenta", t:"Se o ciúme te pegou hoje, me deixa provar mais uma vez: meu coração é seu, e só seu."},
+
+  /* FOME */
+  {c:"fome", t:"Eu sei que você está com fome e que com fome tudo fica pior. Vai comer, meu amor."},
+  {c:"fome", t:"Se você está com fome e sem paciência, respira. Vai comer alguma coisa antes de tudo."},
+  {c:"fome", t:"Eu sei que você esquece de comer às vezes. Hoje não esquece. Vai se alimentar, por mim."},
+  {c:"fome", t:"Se a fome te pegou e você está irritada, é normal. Fome é fome. Vai comer e depois me conta."},
+  {c:"fome", t:"Eu sei que você está morrendo de fome e não tem nada pronto. Pede algo que você merece."},
+  {c:"fome", t:"Se você está com aquele vazio na barriga, come alguma coisa gostosa. Você merece."},
+  {c:"fome", t:"Eu sei que você adia comer pra terminar as coisas. Mas você vem primeiro. Sempre."},
+  {c:"fome", t:"Se você está com fome e com raiva, come primeiro. Depois a gente conversa."},
+  {c:"fome", t:"Eu sei que você está com fome e não quer cozinhar. Pede delivery, eu autorizo."},
+  {c:"fome", t:"Se a sua barriga está roncando, tá na hora de comer. Bora, meu bem, se cuida."},
+  {c:"fome", t:"Eu sei que você não gosta de comer sozinha. Considera-me comendo com você agora."},
+  {c:"fome", t:"Se você está com fome e sem ideia do que comer, vai de algo que te faz feliz. Eu topo tudo."},
+
+  /* ANIMADA */
+  {c:"animada", t:"Se você está animada hoje, eu quero que você saiba que a sua alegria é contagiante!"},
+  {c:"animada", t:"Eu adoro quando você está animada. A sua energia me faz sorrir sozinho."},
+  {c:"animada", t:"Se você está feliz, eu fico feliz em dobro. É automático."},
+  {c:"animada", t:"Eu amo ver você empolgada com algo. Você fica ainda mais linda assim."},
+  {c:"animada", t:"Se hoje você está radiante, aproveita cada minuto. Você merece essa felicidade."},
+  {c:"animada", t:"Eu adoro o seu jeitinho animado. Você é luz na minha vida."},
+  {c:"animada", t:"Se você está eufórica por algo, me conta! Eu quero comemorar junto."},
+  {c:"animada", t:"Eu amo quando você vem me contar as coisas animada. Meu dia melhora na hora."},
+  {c:"animada", t:"Se hoje o mundo está sorrindo pra você, aproveita. Você merece todos os sorrisos."},
+  {c:"animada", t:"Eu adoro a sua empolgação. Você podia estar animada assim todos os dias."},
+  {c:"animada", t:"Se você está com aquela energia boa, contamina o mundo com ela. E a mim também."},
+  {c:"animada", t:"Eu amo ver você feliz. Essa é uma das coisas que fazem a minha vida valer a pena."},
+
+  /* FEIA */
+  {c:"feia", t:"Se você está se achando feia hoje, então eu preciso te dizer: você está enganada."},
+  {c:"feia", t:"Eu sei que você olhou no espelho e não gostou do que viu. Mas eu amo cada pedacinho seu."},
+  {c:"feia", t:"Se você está se sentindo feia, lembra que eu me apaixonei por você do jeitinho que você é."},
+  {c:"feia", t:"Eu sei que tem dias que a gente não se acha bonita. Mas a sua beleza vai muito além do espelho."},
+  {c:"feia", t:"Se você está se sentindo mal com o seu corpo, respira. Você é linda em qualquer forma."},
+  {c:"feia", t:"Eu sei que você se compara com outras mulheres. Mas nenhuma delas tem o seu brilho."},
+  {c:"feia", t:"Se você está se achando feia hoje, eu preciso te lembrar do quanto você é maravilhosa."},
+  {c:"feia", t:"Eu sei que a autoestima oscila. Hoje está baixa, amanhã vai estar alta. Mas você é linda sempre."},
+  {c:"feia", t:"Se você não se acha bonita, deixa eu te ver com os meus olhos: você é de tirar o fôlego."},
+  {c:"feia", t:"Eu sei que você não gosta de algo no seu corpo. Mas eu amo cada detalhe que você tem."},
+  {c:"feia", t:"Se você está se sentindo feia, eu quero te lembrar: você é a mulher mais linda do mundo pra mim."},
+  {c:"feia", t:"Eu sei que você se acha feia às vezes. Mas você é a definição de beleza pra mim."},
+
+  /* ARREPENDIDA */
+  {c:"arrependida", t:"Se você está se sentindo culpada por algo, respira. Ninguém é perfeito, meu amor."},
+  {c:"arrependida", t:"Eu sei que você está remoendo algo que fez. Mas eu te perdoo antes mesmo de você pedir."},
+  {c:"arrependida", t:"Se você errou, tá tudo bem. Errar é humano, e eu te amo mesmo assim."},
+  {c:"arrependida", t:"Eu sei que você está com o peso da culpa. Solta esse peso. Você fez o que podia."},
+  {c:"arrependida", t:"Se você está arrependida de algo, me conta. Vamos passar por isso juntas."},
+  {c:"arrependida", t:"Eu sei que você se cobra demais. Diminui a régua. Você fez o seu melhor."},
+  {c:"arrependida", t:"Se você errou comigo, tá tudo bem. Eu prefiro te ter bem do que ter razão."},
+  {c:"arrependida", t:"Eu sei que você está se punindo por algo. Para. Você merece se perdoar."},
+  {c:"arrependida", t:"Se você fez algo que se arrepende, lembra: o passado não te define. Você é maior que isso."},
+  {c:"arrependida", t:"Eu sei que é difícil se perdoar. Mas eu já te perdoei. Agora é a sua vez."},
+  {c:"arrependida", t:"Se você está arrependida e com vergonha, me procura. Eu não julgo, só amo."},
+  {c:"arrependida", t:"Eu sei que você se culpa por coisas que nem são culpa sua. Respira. Tá tudo bem."}
+];
+
+const APOIOS = [
+  "Respira fundo. Você não precisa resolver tudo agora.",
+  "Você não está sozinha. Eu estou aqui, sempre.",
+  "Eu queria estar aí do seu lado, te abraçando em silêncio.",
+  "Chora se precisar. Eu seguro a sua mão enquanto isso.",
+  "Você é muito mais forte do que imagina.",
+  "Nada disso vai durar para sempre, meu amor.",
+  "Me manda mensagem. Eu respondo na hora, sem pensar duas vezes.",
+  "Você tem todo o direito de se sentir assim.",
+  "Eu não vou a lugar nenhum. Fica tranquila.",
+  "Se precisar falar, eu escuto. Se precisar calar, eu calo junto.",
+  "Você já superou coisas piores e nem percebeu a força que teve.",
+  "Eu acredito em você mais do que qualquer pessoa nesse mundo.",
+  "Você não precisa dar conta de tudo. Descansa um pouco.",
+  "Bebe uma água, come alguma coisa e depois vem falar comigo.",
+  "Eu queria poder tirar isso de você e colocar em mim.",
+  "Você é minha pessoa favorita, até nos dias difíceis.",
+  "Eu vou ficar aqui até você melhorar. Sem pressa nenhuma.",
+  "Você pode desabar comigo. Eu te seguro.",
+  "Isso que você está sentindo é passageiro, eu prometo.",
+  "Você é forte, mas também pode ser frágil. Tá tudo bem.",
+  "Meu colo é seu, a qualquer hora, pro que você precisar.",
+  "Eu te escolheria mil vezes, em mil vidas, do jeitinho que você é.",
+  "Se você precisar de mim, eu vou. Mesmo de madrugada, mesmo longe.",
+  "Eu estou do seu lado, hoje e em todos os dias que vierem.",
+  "Você não precisa ser forte o tempo todo. Deixa eu ser forte por você agora.",
+  "Tudo bem ficar mal. O importante é não ficar mal sozinha.",
+  "Um dia ruim não define quem você é. Você é muito mais que hoje.",
+  "Eu não vou te julgar, não vou te apressar, não vou te deixar.",
+  "Você merece todo o cuidado do mundo. E eu quero te dar isso.",
+  "Se você precisar só ficar em silêncio comigo, também tá tudo bem.",
+  "Chora, respira, descansa. A gente resolve depois.",
+  "Você não é um peso. Você é a minha pessoa favorita.",
+  "Eu te amo nos dias bons e te amo ainda mais nos dias ruins.",
+  "Não tem problema nenhum em não estar bem. Ninguém está sempre.",
+  "Se você cair, eu estou aqui pra te levantar. Sempre.",
+  "Você é mais do que suficiente. Não deixa nada te dizer o contrário.",
+  "Eu prometi estar do seu lado, e é isso que eu vou fazer. Sempre."
+];
+
+const AMORES = [
+  "Eu te amo mais do que consigo explicar.",
+  "Você é a melhor coisa que já me aconteceu.",
+  "Eu te amo do jeitinho que você é, sem tirar nem pôr nada.",
+  "Você é o meu lugar favorito no mundo inteiro.",
+  "Eu te amo ontem, hoje e em todos os amanhãs.",
+  "Você é a minha pessoa.",
+  "Eu amo o seu sorriso, a sua voz, o seu jeito, tudo.",
+  "Eu te amo além da distância, do tempo e de qualquer coisa.",
+  "Você é o meu pensamento favorito.",
+  "Eu te amo tanto que dói de um jeito bom.",
+  "Você é a minha melhor escolha todos os dias.",
+  "Eu amo até as coisas que você acha que são defeitos.",
+  "Meu coração é seu, sempre foi.",
+  "Você é o amor da minha vida.",
+  "Eu te amo com uma intensidade que às vezes me assusta.",
+  "Você é linda, mesmo chorando, mesmo cansada, mesmo brava.",
+  "Eu te amo mais do que amo dormir — e olha que eu amo dormir.",
+  "Você é o meu sonho acordado.",
+  "Eu te amo nos detalhes, nas pequenas coisas, em tudo.",
+  "Você é a resposta de todas as minhas orações.",
+  "Eu te amo de um jeito que não cabe em palavras.",
+  "Você é minha, e eu sou seu, e isso me deixa em paz.",
+  "Eu amo a pessoa que você é e a pessoa que você está se tornando.",
+  "Você é a minha calma no meio de qualquer tempestade.",
+  "Eu te amo hoje mais do que ontem e menos do que amanhã.",
+  "Você é a melhor parte de todos os meus dias.",
+  "Eu amo até o jeito que você fica brava, sério.",
+  "Você é o meu lar, mesmo quando estou longe.",
+  "Eu te amo com todas as minhas forças e com todas as minhas fraquezas.",
+  "Você é a razão de eu acreditar em amor de verdade."
+];
+
+const FECHOS = [
+  "Me chama quando quiser. Eu vou.",
+  "Estou a uma mensagem de distância.",
+  "Conta comigo pra sempre.",
+  "Eu te amo. Não esquece disso nunca.",
+  "Vem cá que eu te abraço.",
+  "Sempre que precisar, é só voltar aqui.",
+  "Um beijo bem grande no seu coração.",
+  "Você não está sozinha, nunca.",
+  "Eu fico aqui, esperando você melhorar.",
+  "Te amo, minha princesa.",
+  "Cuida de você por mim, tá?",
+  "Lembra: eu sempre volto pra você.",
+  "Se cuida, meu amor. Eu te amo demais.",
+  "Estou pensando em você agora mesmo.",
+  "Qualquer coisa, qualquer hora, eu estou aqui.",
+  "Te mando um abraço bem apertado daqui.",
+  "Você é a minha pessoa, sempre.",
+  "Amanhã vai ser melhor. E eu vou estar aqui.",
+  "Fecha os olhos e sente o meu abraço.",
+  "Você é amada. Muito, muito amada.",
+  "Estou aqui. Sempre estive, sempre estarei.",
+  "Não solta a minha mão, porque eu não solto a sua.",
+  "Eu te amo mais do que qualquer coisa nesse mundo.",
+  "Vai ficar tudo bem. Eu prometo."
+];
+
+/* =========================================================
+   2) MOTIVOS — 10.080 combinações
+   ========================================================= */
+const PREFIXOS_MOTIVOS = [
+  "Eu te amo porque","Eu te amo porque","Eu te amo porque",
+  "Uma das razões é que","Uma das mil razões é que",
+  "Eu te amo pelo simples fato de que","Eu te amo demais porque",
+  "Eu te amo tanto porque","Um dos mil motivos é que",
+  "Um dos motivos pelos quais eu te amo é que",
+  "Entre mil motivos, um deles é que","Eu te amo porque"
+];
+
+const RAZOES_MOTIVOS = [
+  "você me faz rir","você me faz feliz","você me entende","você me cuida",
+  "você me abraça","você sorri","você me olha","você fala comigo",
+  "você me escuta","você está do meu lado","o seu sorriso aparece",
+  "o seu abraço me envolve","a sua voz soa","a sua risada ecoa",
+  "os seus olhos brilham","o seu jeito me encanta","o seu carinho me acalma",
+  "o seu cheiro me envolve","o seu toque me arrepia","a sua presença me basta",
+  "você existe na minha vida","você me escolheu","você diz que me ama",
+  "você me chama de amor","você pensa em mim","você sente a minha falta",
+  "você me espera","você me perdoa","você me aceita","você é você"
+];
+
+const COMPLEMENTOS_MOTIVOS = [
+  "como ninguém nunca fez","de um jeito que só você sabe",
+  "e isso muda o meu dia inteiro","e eu me sinto a pessoa mais sortuda do mundo",
+  "e eu esqueço de todos os meus problemas","e o mundo fica mais bonito",
+  "e eu me sinto em casa","e eu quero ficar pra sempre do seu lado",
+  "e eu tenho certeza de que é você","e isso me faz querer ser melhor",
+  "e o meu coração até acelera","e eu me pego sorrindo sozinho",
+  "e eu não consigo imaginar a vida sem você",
+  "e eu sinto que sou a pessoa mais amada do mundo",
+  "e isso já é motivo suficiente","e eu me sinto completo",
+  "e não existe lugar melhor no mundo",
+  "e é por isso que eu te escolho todos os dias",
+  "e é impossível não se apaixonar de novo",
+  "e eu me apaixono por você mais uma vez",
+  "de um jeito que aquece o meu peito",
+  "de um jeito que só você consegue",
+  "e isso é o que me faz mais feliz",
+  "e nada nesse mundo se compara",
+  "e eu agradeço todos os dias por você existir",
+  "e isso é tudo o que eu preciso",
+  "de um jeito que eu não sei explicar",
+  "e é isso que me faz te amar cada vez mais"
+];
+
+const TOTAL_MOTIVOS = PREFIXOS_MOTIVOS.length * RAZOES_MOTIVOS.length * COMPLEMENTOS_MOTIVOS.length;
+
+/* =========================================================
+   3) CATEGORIAS
+   ========================================================= */
+const CATEGORIAS = [
+  {id:"aleatorio",  label:"Aleatório 🎲"},
+  {id:"acalma",     label:"Me acalma 🫧"},
+  {id:"triste",     label:"Triste 😢"},
+  {id:"saudade",    label:"Saudade 🥺"},
+  {id:"ansiosa",    label:"Ansiosa 😰"},
+  {id:"cansada",    label:"Cansada 😴"},
+  {id:"brava",      label:"Brava 😠"},
+  {id:"insegura",   label:"Insegura 😔"},
+  {id:"ciumenta",   label:"Ciumenta 😾"},
+  {id:"medo",       label:"Com medo 😨"},
+  {id:"doente",     label:"Doente 🤒"},
+  {id:"estresse",   label:"Estressada 😤"},
+  {id:"tpm",        label:"TPM 🌸"},
+  {id:"sozinha",    label:"Sozinha 🥀"},
+  {id:"noite",      label:"Não durmo 🌙"},
+  {id:"fome",       label:"Com fome 🍕"},
+  {id:"feia",       label:"Me achando feia 🥲"},
+  {id:"arrependida",label:"Arrependida 🥺"},
+  {id:"animada",    label:"Animada ✨"},
+  {id:"carinho",    label:"Quero carinho 🤍"},
+  {id:"amor",       label:"Quero amor 💙"},
+  {id:"geral",      label:"Só porque sim ✨"}
+];
+
+/* =========================================================
+   4) MOTOR
+   ========================================================= */
+const rnd = arr => arr[Math.floor(Math.random() * arr.length)];
+
+function poolDaCategoria(cat){
+  if(!cat || cat === "aleatorio") return SITUACOES;
+  const p = SITUACOES.filter(s => s.c === cat);
+  return p.length ? p : SITUACOES;
+}
+
+function gerarMensagem(categoria){
+  const pool = poolDaCategoria(categoria);
+  const saudacao = rnd(SAUDACOES);
+  const situacao = rnd(pool).t;
+  const apoio    = rnd(APOIOS);
+  const amor     = rnd(AMORES);
+  const fecho    = rnd(FECHOS);
+  return `${saudacao} ${situacao} ${apoio} ${amor} ${fecho}`;
+}
+
+function gerarMotivo(){
+  return `${rnd(PREFIXOS_MOTIVOS)} ${rnd(RAZOES_MOTIVOS)} ${rnd(COMPLEMENTOS_MOTIVOS)}.`;
+}
+
+/* =========================================================
+   5) INTERFACE
+   ========================================================= */
+const msgEl       = document.getElementById('msg');
+const chipsEl     = document.getElementById('chips');
+const chipsWrap   = document.getElementById('chipsWrap');
+const counterEl   = document.getElementById('counter');
+let categoriaAtual = "aleatorio";
+let mensagemAtual  = "";
+
+CATEGORIAS.forEach(cat => {
+  const b = document.createElement('button');
+  b.className = 'chip' + (cat.id === 'aleatorio' ? ' active' : '');
+  b.textContent = cat.label;
+  b.dataset.id = cat.id;
+  b.addEventListener('click', () => {
+    categoriaAtual = cat.id;
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    b.classList.add('active');
+    mostrar();
+    if(cat.id === "acalma") abrirRespira();
+  });
+  chipsEl.appendChild(b);
+});
+
+/* detecta se a barra de chips precisa de fade na borda (só mobile) */
+function atualizarFadeChips(){
+  if(chipsEl.scrollWidth > chipsEl.clientWidth + 4){
+    chipsWrap.classList.add('scrollable');
+  } else {
+    chipsWrap.classList.remove('scrollable');
+  }
+}
+window.addEventListener('resize', atualizarFadeChips);
+chipsEl.addEventListener('scroll', () => {
+  const fim = chipsEl.scrollLeft + chipsEl.clientWidth >= chipsEl.scrollWidth - 4;
+  chipsWrap.classList.toggle('scrollable', !fim);
+});
+setTimeout(atualizarFadeChips, 100);
+
+function mostrar(){
+  mensagemAtual = gerarMensagem(categoriaAtual);
+  msgEl.textContent = mensagemAtual;
+  msgEl.classList.remove('pop');
+  void msgEl.offsetWidth;
+  msgEl.classList.add('pop');
+  atualizarContador();
+}
+
+function atualizarContador(){
+  const total = SAUDACOES.length * SITUACOES.length * APOIOS.length * AMORES.length * FECHOS.length;
+  const pool  = poolDaCategoria(categoriaAtual).length;
+  const sub   = SAUDACOES.length * pool * APOIOS.length * AMORES.length * FECHOS.length;
+  counterEl.innerHTML =
+    `💙 <strong>${total.toLocaleString('pt-BR')}</strong> mensagens no total — ` +
+    `e <strong>${sub.toLocaleString('pt-BR')}</strong> só pra esse sentimento.<br>` +
+    `Mais <strong>${TOTAL_MOTIVOS.toLocaleString('pt-BR')}</strong> motivos do porquê eu te amo.`;
+}
+
+/* botões */
+document.getElementById('again').addEventListener('click', mostrar);
+
+document.getElementById('copy').addEventListener('click', async (e) => {
+  const b = e.currentTarget;
+  const original = b.innerHTML;
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      await navigator.clipboard.writeText(mensagemAtual);
+    } else {
+      // fallback pra navegadores antigos no mobile
+      const ta = document.createElement('textarea');
+      ta.value = mensagemAtual;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    b.innerHTML = "✅ Copiado!";
+    setTimeout(() => b.innerHTML = original, 1600);
+  }catch(err){
+    alert("Não consegui copiar 😅 Mas é só selecionar o texto e copiar!");
+  }
+});
+
+document.getElementById('zap').addEventListener('click', () => {
+  window.open("https://wa.me/?text=" + encodeURIComponent(mensagemAtual), "_blank");
+});
+
+document.getElementById('abraco').addEventListener('click', (e) => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = rect.left + rect.width / 2;
+  const y = rect.top + rect.height / 2;
+
+  const hug = document.createElement('div');
+  hug.className = 'hug';
+  hug.textContent = '💙';
+  document.body.appendChild(hug);
+  setTimeout(() => hug.remove(), 1700);
+
+  for(let i = 0; i < 26; i++){
+    const s = document.createElement('span');
+    s.className = 'burst';
+    s.textContent = ['💙','💎','✨','🤍','💠','🌊','⭐'][Math.floor(Math.random()*7)];
+    s.style.left = x + 'px';
+    s.style.top  = y + 'px';
+    const ang = Math.random() * Math.PI * 2;
+    const dist = 90 + Math.random() * 240;
+    s.style.setProperty('--dx', Math.cos(ang) * dist + 'px');
+    s.style.setProperty('--dy', Math.sin(ang) * dist + 'px');
+    s.style.setProperty('--rot', (Math.random() * 360 - 180) + 'deg');
+    s.style.fontSize = (14 + Math.random() * 20) + 'px';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1300);
+  }
+});
+
+/* =========================================================
+   6) RESPIRAÇÃO GUIADA
+   ========================================================= */
+const overlay    = document.getElementById('respiraOverlay');
+const circulo    = document.getElementById('respiraCirculo');
+const respiraTxt = document.getElementById('respiraTxt');
+const fecharBtn  = document.getElementById('respiraFechar');
+let respiraTimers = [];
+let respiraAtiva  = false;
+
+function limparRespira(){
+  respiraTimers.forEach(t => clearTimeout(t));
+  respiraTimers = [];
+}
+
+function cicloRespira(){
+  if(!respiraAtiva) return;
+  circulo.classList.remove('expira');
+  circulo.classList.add('inspira');
+  circulo.textContent = 'inspira';
+  respiraTxt.textContent = 'Enche o peito de ar bem devagar…';
+  respiraTimers.push(setTimeout(() => {
+    if(!respiraAtiva) return;
+    circulo.textContent = 'segura';
+    respiraTxt.textContent = 'Segura… só mais um pouquinho…';
+  }, 4000));
+  respiraTimers.push(setTimeout(() => {
+    if(!respiraAtiva) return;
+    circulo.classList.remove('inspira');
+    circulo.classList.add('expira');
+    circulo.textContent = 'expira';
+    respiraTxt.textContent = 'Solta todo o ar… solta o peso junto…';
+  }, 7000));
+  respiraTimers.push(setTimeout(cicloRespira, 11000));
+}
+
+function abrirRespira(){
+  respiraAtiva = true;
+  overlay.classList.add('on');
+  document.body.style.overflow = 'hidden';
+  circulo.classList.remove('inspira','expira');
+  respiraTxt.textContent = 'Vem cá. Respira comigo…';
+  circulo.textContent = 'respira';
+  limparRespira();
+  respiraTimers.push(setTimeout(cicloRespira, 800));
+}
+
+function fecharRespira(){
+  respiraAtiva = false;
+  overlay.classList.remove('on');
+  document.body.style.overflow = '';
+  limparRespira();
+  circulo.classList.remove('inspira','expira');
+}
+
+fecharBtn.addEventListener('click', fecharRespira);
+
+/* =========================================================
+   7) MOTIVOS
+   ========================================================= */
+const motivosOverlay = document.getElementById('motivosOverlay');
+const motivosTxt     = document.getElementById('motivosTxt');
+const motivosCounter = document.getElementById('motivosCounter');
+const motivosProximo = document.getElementById('motivosProximo');
+const motivosFechar  = document.getElementById('motivosFechar');
+const btnMotivo      = document.getElementById('btnMotivo');
+
+let numeroMotivo = 0;
+
+function mostrarMotivo(){
+  numeroMotivo++;
+  motivosTxt.textContent = gerarMotivo();
+  motivosTxt.classList.remove('pop');
+  void motivosTxt.offsetWidth;
+  motivosTxt.classList.add('pop');
+  motivosCounter.innerHTML =
+    `motivo <strong>nº ${numeroMotivo.toLocaleString('pt-BR')}</strong> — ` +
+    `de <strong>${TOTAL_MOTIVOS.toLocaleString('pt-BR')}</strong> possíveis 💙`;
+}
+
+function abrirMotivos(){
+  motivosOverlay.classList.add('on');
+  document.body.style.overflow = 'hidden';
+  numeroMotivo = 0;
+  mostrarMotivo();
+}
+
+function fecharMotivos(){
+  motivosOverlay.classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+btnMotivo.addEventListener('click', abrirMotivos);
+motivosProximo.addEventListener('click', mostrarMotivo);
+motivosFechar.addEventListener('click', fecharMotivos);
+motivosOverlay.addEventListener('click', (e) => {
+  if(e.target === motivosOverlay) fecharMotivos();
+});
+
+/* fechar overlays com ESC (desktop) */
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    if(motivosOverlay.classList.contains('on')) fecharMotivos();
+    if(overlay.classList.contains('on')) fecharRespira();
+  }
+});
+
+/* =========================================================
+   8) FUNDO + PRIMEIRA MENSAGEM
+   ========================================================= */
+(function criarCoracoes(){
+  const wrap = document.getElementById('hearts');
+  const simbolos = ['♥','♡','💙','✦','✧','❄'];
+  const qtd = window.innerWidth < 500 ? 16 : 24;
+  for(let i = 0; i < qtd; i++){
+    const s = document.createElement('span');
+    s.className = 'heart';
+    s.textContent = simbolos[Math.floor(Math.random()*simbolos.length)];
+    s.style.left = Math.random() * 100 + '%';
+    s.style.fontSize = (9 + Math.random() * 22) + 'px';
+    s.style.animationDuration = (11 + Math.random() * 16) + 's';
+    s.style.animationDelay = (-Math.random() * 26) + 's';
+    s.style.opacity = (0.06 + Math.random() * 0.18).toFixed(2);
+    wrap.appendChild(s);
+  }
+})();
+
+mostrar();
+</script>
+</body>
+</html>
